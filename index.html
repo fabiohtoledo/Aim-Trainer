@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aim Trainer</title>
+
+  <!-- link to the styles.css file -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Aim Trainer</h1>
+  <p>This is a simple aim trainer that allows you to practice your shooting skills.</p>
+  <div id="input-area">
+    <p></p>
+    <input type="number" name="timer" id="timer" value="30">
+    <button onclick="startTraining()">Start Training</button>
+    <div class="items-line" id="counter-container">
+      <p>Hits: </p>
+      <div id="hits-counter-text">0</div>
+    </div>
+    <div class="items-line" id="accuracy-container">
+      <p>Accuracy: </p>
+      <p id="hits-percentage">100%</p>
+    </div>
+    <div class="items-line" id="total-clicks-container">
+      <p>Total Clicks: </p>
+      <p id="hits-total">0</p>
+    </div>
+      <div class="items-line" id="total-targets-faded-container">
+      <p>Total Targets Faded: </p>
+      <p id="faded-total">0</p>
+    </div>
+  </div>
+
+
+  <!-- clicker section or div area -->
+  <div id="train-area" class="clicker-container">
+    <!-- <button class="target"></button> -->
+  </div>
+
+
+
+
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

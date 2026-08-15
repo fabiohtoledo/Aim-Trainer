@@ -1,0 +1,146 @@
+/* 1. Declaração das variáveis no :root */
+:root {
+  /* Cores de fundo e estrutura */
+  --bg-page: #0f172a;          /* Azul escuro/grafite para a página */
+  --bg-card: #1e293b;          /* Container do jogo e placar */
+  --border-color: #334155;     /* Bordas sutis */
+  
+  /* Cores de texto */
+  --text-main: #f8fafc;        /* Títulos e destaques (branco) */
+  --text-muted: #94a3b8;       /* Rótulos e textos secundários */
+  --accent-blue: #38bdf8;      /* Números do placar */
+  
+  /* Elementos interativos */
+  --target-color: #ff4655;     /* Alvo (vermelho vibrante estilo Valorant) */
+  --target-glow: rgba(255, 70, 85, 0.5); /* Brilho do alvo */
+  --btn-start: #22c55e;        /* Verde para o botão Iniciar */
+  --btn-start-hover: #16a34a;  /* Verde escuro para hover */
+}
+
+/* 2. Aplicação das variáveis no seu código */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-muted);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Barlow', sans-serif;
+}
+
+h1 {
+  color: var(--text-main);
+  margin: 20px 0 5px 0;
+}
+
+/* Área de inputs e placar */
+#input-area {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin: 20px;
+  align-items: center;
+}
+
+.items-line {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 8px 14px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.1s ease;
+}
+
+.items-line div, 
+.items-line p[id] {
+  color: var(--accent-blue);
+  font-weight: bold;
+}
+
+
+/* Classe de animação aplicada via JS no clique */
+.hit-animate {
+  animation: popScale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Keyframes da animação */
+@keyframes popScale {
+  0% {
+    transform: scale(1) rotate(0deg);
+    color: #ffffff;
+  }
+  50% {
+    transform: scale(1.1) rotate(2deg); /* Expande 40% */
+    color: #4caf50;        /* Pisca verde ao acertar */
+  }
+  100% {
+    transform: scale(1) rotate(-2deg);;
+    color: #ffffff;
+  }
+}
+
+
+
+/* Arena de treino */
+#train-area {
+  margin: 20px;
+  width: 900px;
+  height: 600px;
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair; /* Transforma o mouse em mira */
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Alvo */
+.target {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: var(--target-color);
+  border: 2px solid var(--text-main);
+  border-radius: 50%;
+  padding: 10px;
+  cursor: crosshair;
+  box-shadow: 0 0 12px var(--target-glow);
+  animation: fadeIn 1s forwards ease-out;
+}
+/* keyframe animation for the target from 0 opacity and 0 width/heigth*/
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  90% { opacity: 1; }
+  100% { opacity: 0;}
+  
+}
+
+
+/* Botão de Iniciar */
+button {
+  background-color: var(--btn-start);
+  color: var(--text-main);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: var(--btn-start-hover);
+}
+
+
