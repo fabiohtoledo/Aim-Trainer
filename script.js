@@ -1,5 +1,5 @@
 //Seleção de elementos
-const timer = document.getElementById("timer")
+const timer = document.getElementById("timer-selector")
 const area = document.getElementById("train-area");
 const counterOfHitsText = document.getElementById("hits-counter-text");
 const hitContainer = document.getElementById("counter-container");

@@ -17,8 +17,6 @@
   --btn-start-hover: #16a34a;  /* Verde escuro para hover */
 }
 
-/* 2. Aplicação das variáveis no seu código */
-
 * {
   margin: 0;
   padding: 0;
@@ -49,6 +47,67 @@ h1 {
   margin: 20px;
   align-items: center;
 }
+
+#timer-container{
+  padding: 4px 7px;
+  gap: 3px;
+}
+
+#timer-selector{
+  height: 1.5rem;
+  width: 3rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-page);
+  color: var(--text-muted);
+}
+
+#timer-selector:focus, #timer-selector:hover, #timer-selector:active{
+  color: var(--text-main);
+  border-color: var(--text-muted);
+}
+
+/* Remove as setas no Chrome, Safari, Edge e Opera */
+#timer-selector::-webkit-outer-spin-button,
+#timer-selector::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove as setas no Firefox --- testar */
+/* #timer-selector[type="number"] {
+  -moz-appearance: textfield;
+} */
+
+
+/* Container pai para alinhar o input e os botões lado a lado */
+.custom-number-input {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Container dos botões empilhados */
+.spinner-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo personalizado dos botões */
+.spinner-buttons button {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  padding: 2px 5px;
+  font-size: 0.5rem;
+  line-height: 1;
+}
+
+.spinner-buttons button:hover {
+  background-color: var(--btn-start);
+}
+
 
 .items-line {
   background-color: var(--bg-card);

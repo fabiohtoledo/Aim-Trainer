@@ -12,8 +12,15 @@
   <h1>Aim Trainer</h1>
   <p>This is a simple aim trainer that allows you to practice your shooting skills.</p>
   <div id="input-area">
-    <p></p>
-    <input type="number" name="timer" id="timer" value="30">
+    <div class="items-line" id="timer-container">
+      <p>Timer:</p>
+      <input type="number" name="timer" id="timer-selector" value="30">
+      <div class="spinner-buttons">
+        <button type="button" onclick="document.getElementById('timer-selector').stepUp()">▲</button>
+        <button type="button" onclick="document.getElementById('timer-selector').stepDown()">▼</button>
+      </div>
+    </div>
+
     <button onclick="startTraining()">Start Training</button>
     <div class="items-line" id="counter-container">
       <p>Hits: </p>
