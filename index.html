@@ -9,15 +9,16 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <p id="timer-counter">30s</p>
   <h1>Aim Trainer</h1>
   <p>This is a simple aim trainer that allows you to practice your shooting skills.</p>
   <div id="input-area">
     <div class="items-line" id="timer-container">
       <p>Timer:</p>
-      <input type="number" name="timer" id="timer-selector" value="30">
+      <input type="number" name="timer" id="timer-selector" value="30" min="1">
       <div class="spinner-buttons">
-        <button type="button" onclick="document.getElementById('timer-selector').stepUp()">▲</button>
-        <button type="button" onclick="document.getElementById('timer-selector').stepDown()">▼</button>
+        <button type="button" id="btn-timer-up">▲</button>
+        <button type="button" id="btn-timer-down">▼</button>
       </div>
     </div>
 

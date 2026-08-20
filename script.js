@@ -9,6 +9,11 @@ const counterOfAccuracy = document.getElementById("hits-percentage");
 const accuracyContainer = document.getElementById("accuracy-container");
 const counterOfTargetFaded = document.getElementById("faded-total");
 const targetFadedContainer = document.getElementById("total-targets-faded-container");
+const timerCounter = document.getElementById("timer-counter");
+const inputTimerAllButtons = document.querySelectorAll(".spinner-buttons > button")
+const btnUp = document.getElementById("btn-timer-up");
+const btnDown = document.getElementById("btn-timer-down");
+
 
 
 
@@ -20,14 +25,16 @@ let totalHits = 0;
 let targetFaded = 0;
 let accuracy = 100;
 let isPlaying = false;
-let intervalo = 0;
+let generatorInterval = 0;
+let finishTimeout = null;
+let countdown = 0;
+let countdownNumber = timer.valueAsNumber;
 
 
 
 
 //Funções utilitárias
 const timerMs = () => parseInt(timer.value) * 1000; //config o tempo
-console.log(timer);
 
 let buttonLifeSpan = 1000; //variável de tempo de vida do botão, pode ficar menor ainda. se precisar
 
@@ -37,7 +44,7 @@ function updateStats(){ //update stats
   counterOfTotalHitsText.textContent = totalHits;
   counterOfAccuracy.textContent = `${accuracy}%`;
   counterOfTargetFaded.textContent = targetFaded;
-  
+  timerCounter.textContent = `${countdownNumber}s`
   
 }
 
@@ -65,10 +72,59 @@ function accuracyMath(){ //precisão
 
 document.addEventListener('keydown', (event) => {
   if(event.key === 'Escape'){
-    stopTraining();
+    stopTraining(); //para ao apertar ESC
   }
 })
 
+
+
+
+
+function countDownTheTimer(){ //Contador de timer no html
+  countdownNumber--;
+  updateStats();
+}
+
+timer.addEventListener('change', () => {
+  // O evento 'change' dispara quando o usuário finaliza a digitação (perde o foco)
+  if (timer.valueAsNumber < 1 || isNaN(timer.valueAsNumber)) {
+    timer.value = 1; // Corrige o texto visível no input para 1
+    countdownNumber = 1;
+  }else{
+    countdownNumber = timer.valueAsNumber;
+  }
+    updateStats();
+});
+
+// Quando clicar na seta PARA CIMA
+btnUp.addEventListener('click', () => {
+  timer.stepUp();             // Aumenta +1 no input
+  countdownNumber = timer.valueAsNumber; // Sincroniza a variável
+  updateStats();              // Atualiza a tela
+});
+
+// Quando clicar na seta PARA BAIXO
+btnDown.addEventListener('click', () => {
+  timer.stepDown();           // Diminui -1 no input
+  countdownNumber = timer.valueAsNumber; // Sincroniza a variável
+  updateStats();              // Atualiza a tela
+});
+
+function disableTimerInput(){
+  inputTimerAllButtons.forEach(button => {
+    button.disabled = true;
+  })
+
+  timer.disabled = true;
+}
+
+function enableTimerInput(){
+  inputTimerAllButtons.forEach(button => {
+    button.disabled = false;
+  })
+
+  timer.disabled = false;
+}
 
 
 
@@ -113,6 +169,7 @@ function startTraining(){
   if(isPlaying){
     return
   }
+  disableTimerInput();
   isPlaying = true;
   //zerando as contagens
   counterHits = 0;
@@ -122,24 +179,37 @@ function startTraining(){
   
   generateTargets();
   
-  intervalo = setInterval(generateTargets, 500);
-  console.log("iniciou")
+  generatorInterval = setInterval(generateTargets, 500);
+  console.log(timer.value);
+  console.log("iniciou");
+  countdownNumber = timer.valueAsNumber;
+  countdown = setInterval(countDownTheTimer, 1000);
 
-  setTimeout(function() {
+  finishTimeout = setTimeout(function() {
     stopTraining();
-    console.log("encerrou")
+    console.log("encerrou");
   }, timerMs());
 
 }
 
-function stopTraining(){
-  clearInterval(intervalo);
-  killSection();
+function stopTraining() {
+  isPlaying = false; // 1. Interrompe a lógica de cliques e eventos imediatamente
+
+  // 2. Limpa todos os agendamentos pendentes
+  clearInterval(generatorInterval);
+  clearInterval(countdown);
+  clearTimeout(finishTimeout);
+
+  // 3. Restaura interface e estado
+  enableTimerInput();
+  countdownNumber = timer.valueAsNumber;
+  
+  // 4. Remove elementos da tela e atualiza estatísticas finais
+  killSection(); 
 }
 
 function killSection(){
   const buttons = document.querySelectorAll(".target")
-  isPlaying = false;
   updateStats();
 
   buttons.forEach(button => {
