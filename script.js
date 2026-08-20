@@ -1,4 +1,6 @@
-//Seleção de elementos
+// ==========================================
+// SELEÇÃO DE ELEMENTOS DO DOM
+// ==========================================
 const timer = document.getElementById("timer-selector")
 const area = document.getElementById("train-area");
 const counterOfHitsText = document.getElementById("hits-counter-text");
@@ -19,6 +21,8 @@ const btnDown = document.getElementById("btn-timer-down");
 
 
 
+
+
 //Variaveis de estado do jogo
 let counterHits = 0;
 let totalHits = 0;
@@ -30,7 +34,30 @@ let finishTimeout = null;
 let countdown = 0;
 let countdownNumber = timer.valueAsNumber;
 
+// ==========================================
+// LÓGICA DA SIDEBAR / NAVEGAÇÃO
+// ==========================================
+const sidebarLink =  document.querySelectorAll(".sidebar-link");
+console.log(sidebarLink);
 
+
+let sidebarActiveNow = document.getElementById("personalized");
+
+
+sidebarLink.forEach(link => {
+  link.addEventListener('click', () => {
+    sidebarActiveNow.classList.remove("sb-active");
+    link.classList.add("sb-active");
+    sidebarActiveNow = link;
+  })
+})
+
+
+
+
+// ==========================================
+// LÓGICA DO JOGO E DA ARENA
+// ==========================================
 
 
 //Funções utilitárias
@@ -218,3 +245,12 @@ function killSection(){
 
   
 }
+
+
+
+
+
+
+
+
+

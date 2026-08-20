@@ -6,9 +6,46 @@
   <title>Aim Trainer</title>
 
   <!-- link to the styles.css file -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles/styles.css"> 
+  <link rel="stylesheet" href="styles/sidebar.css"> 
 </head>
 <body>
+    <nav id="sidebar">
+      <!-- site logo -->
+      <div id="logo-cont">
+        <img src="imgs/ph.svg" alt="logo">
+        <p>Aim</p>
+      </div>
+      <!-- Modes -->
+      <div class="divisor">
+        <p>Modes</p>
+      </div>
+      <div class="sidebar-cont-modes">
+        <div class="sidebar-link sb-active" id="personalized">
+          <img src="imgs/personalized.svg" alt="">
+          <p>Personalized</p>
+        </div>
+        <div class="sidebar-link"  id="personalized2">
+          <img src="imgs/personalized.svg" alt="">
+          <p>Personalized</p>
+        </div>
+      </div>
+      <!-- Training -->
+      <div class="divisor">
+        <p>Training</p>
+      </div>
+      <div class="sidebar-cont-training">
+        <div class="sidebar-link"  id="personalized3">
+          <img src="imgs/personalized.svg" alt=" ">
+          <p>Personalized</p>
+        </div>
+        <div class="sidebar-link"  id="personalized4">
+          <img src="imgs/personalized.svg" alt="">
+          <p>Personalized</p>
+        </div>
+
+      </div>
+    </nav>
   <p id="timer-counter">30s</p>
   <h1>Aim Trainer</h1>
   <p>This is a simple aim trainer that allows you to practice your shooting skills.</p>
@@ -52,6 +89,7 @@
 
 
   <script src="script.js"></script>
+  <script src="scripts/sidebar.js"></script>
 
 
 </body>
